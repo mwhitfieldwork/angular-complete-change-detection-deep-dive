@@ -2,6 +2,9 @@
   <p>
     <label for="message">Your Message</label>
     <textarea id="message" name="message" [(ngModel)]="enteredText"></textarea>
+    <!--if you add onPush here the messages are evaluated again
+    If fact all of the changeDetection triggers fire on every keystroke due to two way binding
+    of the ngModel-->
   </p>
   <p class="actions">
     <button>Save</button>

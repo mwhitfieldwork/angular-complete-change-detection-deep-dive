@@ -10,6 +10,9 @@ import { InfoMessageComponent } from '../info-message/info-message.component';
   imports: [InfoMessageComponent],
 })
 export class CounterComponent implements OnInit{
+  //Everytime a button is clicked, or if something changes in the ui
+  //angular will run the change detection AND LOOK AT every part of the Zoned application
+  
   private zone = inject(NgZone);
   count = signal(0);
 
@@ -25,7 +28,8 @@ export class CounterComponent implements OnInit{
         console.log('runs chnage deection again');
       }, 5000);   
     });
-    //this method tells angular zone detection to ignore this setTimeout
+    //this method tells angular zone detection to ignore this setTimeout to avoid having the detection
+    //run more times than needed
 
   }
 
