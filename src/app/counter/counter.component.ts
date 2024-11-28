@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, NgZone, OnInit, signal } from '@angular/core';
 
 import { InfoMessageComponent } from '../info-message/info-message.component';
 
@@ -9,8 +9,25 @@ import { InfoMessageComponent } from '../info-message/info-message.component';
   styleUrl: './counter.component.css',
   imports: [InfoMessageComponent],
 })
-export class CounterComponent {
+export class CounterComponent implements OnInit{
+  private zone = inject(NgZone);
   count = signal(0);
+
+
+  ngOnInit() {
+    setInterval(() => {
+      this.count.set(0);
+    }, 4000);
+    //run the angular change deection every 4 seconds
+
+    this.zone.runOutsideAngular(() => {
+      setInterval(() => {
+        console.log('runs chnage deection again');
+      }, 5000);   
+    });
+    //this method tells angular zone detection to ignore this setTimeout
+
+  }
 
   get debugOutput() {
     console.log('[Counter] "debugOutput" binding re-evaluated.');
