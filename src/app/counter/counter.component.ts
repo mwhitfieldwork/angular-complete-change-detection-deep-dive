@@ -14,7 +14,8 @@ export class CounterComponent implements OnInit{
   //angular will run the change detection AND LOOK AT every part of the Zoned application
   
   private zone = inject(NgZone);
-  count = signal(0);
+  count = signal(0); //signals will lead to evaluations by change detection
+  //everytime the count signal changes, angular will run change detection
 
 
   ngOnInit() {

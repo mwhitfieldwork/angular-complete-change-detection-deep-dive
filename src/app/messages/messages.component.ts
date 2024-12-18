@@ -21,14 +21,12 @@ import { NewMessageComponent } from './new-message/new-message.component';
   //OnPush limits the amount of change detection
 })
 export class MessagesComponent {
-  messages = signal<string[]>([]);
+  //messages = signal<string[]>([]);
 
   get debugOutput() {
     console.log('[Messages] "debugOutput" binding re-evaluated.');
     return 'Messages Component Debug Output';
   }
 
-  onAddMessage(message: string) {
-    this.messages.update((oldMessages) => [...oldMessages, message]);
-  }
+
 }
